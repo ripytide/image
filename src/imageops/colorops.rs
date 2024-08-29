@@ -1,6 +1,7 @@
 //! Functions for altering and converting the color of pixelbufs
 
 use num_traits::NumCast;
+use rgb::Rgb;
 use std::f64::consts::PI;
 
 use crate::color::{FromColor, IntoColor, Luma, LumaA};
@@ -288,6 +289,7 @@ where
 pub fn huerotate_in_place<I>(image: &mut I, value: i32)
 where
     I: GenericImage,
+    I::Pixel: Into<Rgb<<I::Pixel as Pixel>::Component>>,
 {
     let (width, height) = image.dimensions();
 
